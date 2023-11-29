@@ -1,1 +1,1 @@
-# Sole Shoe Capstone Project First Commit
+# Sole Shoe Capstone Project 
