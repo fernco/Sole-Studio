@@ -8,4 +8,4 @@ creating worlds best shoe site lol
     - integrate shopping cart to web app 
     - set up user page 
     - set up cart summary and cart preview 
-    -
+    
