@@ -78,6 +78,7 @@ const createTables = async () => {
     }
 }
 
+
 const insertUsers = async () => {
   try {
     await Promise.all(users.map(user => 
