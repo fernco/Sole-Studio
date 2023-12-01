@@ -3,30 +3,24 @@ const { createUser } = require('./users');
 
 const users = [
   {
-    name: 'Emily Johnson',
+    first_name: 'Emily',
+    last_name: 'Jonhson',
     email: 'emily@example.com',
     password: 'securepass',
   },
   {
-    name: 'Liu Wei',
+    first_name: 'Lui',
+    last_name: 'Wei',
     email: 'liu@example.com',
     password: 'strongpass',
   },
   {
-    name: 'Isabella García',
+    first_name: 'Isabella',
+    last_name: 'Garcia',
     email: 'bella@example.com',
     password: 'pass1234',
   },
-  {
-    name: 'Mohammed Ahmed',
-    email: 'mohammed@example.com',
-    password: 'mysecretpassword',
-  },
-  {
-    name: 'John Smith',
-    email: 'john@example.com',
-    password: 'password123',
-  },
+ 
   // Add more user objects as needed
 ];  
 
@@ -46,7 +40,8 @@ const createTables = async () => {
         await db.query(`
         CREATE TABLE users(
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) DEFAULT 'name',
+            first_name VARCHAR(255) DEFAULT 'first_name',
+            last_name VARCHAR(255) DEFAULT 'last_name',
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL
         )`)

@@ -4,7 +4,8 @@
   "description": "creating worlds best shoe site lol",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "node ./src/server/db/seed.js",
+    "dev": ""
   },
   "keywords": [],
   "author": "",
