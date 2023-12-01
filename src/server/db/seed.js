@@ -28,7 +28,8 @@ const dropTables = async () => {
     try {
         await db.query(`
         DROP TABLE IF EXISTS users;
-        `)
+        DROP TABLE IF EXISTS products;
+        `);
     }
     catch(err) {
         throw err;
@@ -36,6 +37,7 @@ const dropTables = async () => {
 }
 
 const createTables = async () => {
+  console.log('Dropping all tables...');
     try{
         await db.query(`
         CREATE TABLE users(
@@ -44,12 +46,24 @@ const createTables = async () => {
             last_name VARCHAR(255) DEFAULT 'last_name',
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL
-        )`)
-    }
+        );
+
+        CREATE TABLE products(
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(255),
+          description TEXT NOT NULL,
+          price DECIMAL,
+          img TEXT
+        );
+
+        
+      `)
+    } 
     catch(err) {
         throw err;
     }
 }
+
 
 const insertUsers = async () => {
   try {
