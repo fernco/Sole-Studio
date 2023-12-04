@@ -27,8 +27,10 @@ const users = [
 const dropTables = async () => {
     try {
         await db.query(`
-        DROP TABLE IF EXISTS users;
+        DROP TABLE IF EXISTS order_product;
+        DROP TABLE IF EXISTS orders;
         DROP TABLE IF EXISTS products;
+        DROP TABLE IF EXISTS users;
         `);
     }
     catch(err) {
@@ -40,24 +42,36 @@ const createTables = async () => {
   console.log('Dropping all tables...');
     try{
         await db.query(`
-        CREATE TABLE users(
-            id SERIAL PRIMARY KEY,
-            first_name VARCHAR(255) DEFAULT 'first_name',
-            last_name VARCHAR(255) DEFAULT 'last_name',
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL
-        );
+        CREATE TABLE users (
+          id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+          first_name VARCHAR(255) NOT NULL,
+          last_name VARCHAR(255) NOT NULL,
+          email VARCHAR(255) UNIQUE NOT NULL,
+          password VARCHAR(255) NOT NULL
+      );
 
-        CREATE TABLE products(
-          id SERIAL PRIMARY KEY,
-          name VARCHAR(255),
-          description TEXT NOT NULL,
-          price DECIMAL,
-          img TEXT
-        );
+      CREATE TABLE products (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        description TEXT,
+        price DECIMAL NOT NULL,
+        image_url TEXT
+      );
 
-        
-      `)
+      CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id),
+        order_Date TIMESTAMP,
+        order_status VARCHAR(255) NOT NULL,
+        total DECIMAL NOT NULL
+      );
+
+      CREATE TABLE order_product (
+        order_id INTEGER REFERENCES orders(id),
+        product_id INTEGER REFERENCES products(id),
+        quantity INTEGER NOT NULL
+      );
+      `);
     } 
     catch(err) {
         throw err;
